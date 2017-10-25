@@ -98,8 +98,6 @@ p(y_data)
 
 x_data = list(map(lambda w: word2onehot(w, words2index, depth), x_data))
 y_data = list(map(lambda w: word2onehot(w, words2index, depth), y_data))
-p(x_data)
-p(y_data)
 
 x = tf.placeholder(tf.float32, [None, depth])
 y = tf.placeholder(tf.float32, [None, depth])
@@ -119,6 +117,7 @@ if checkpoint:
     print 'Load last model params successfully.'
 
 if TRAIN:
+    print '\nStart training...'
     for step in range(1, MAX_ITERATOR + 1):
         loss_value, _ = sess.run([loss, train_step], feed_dict={x: x_data, y: y_data})
         if step % 10 == 0 or step == MAX_ITERATOR:
@@ -126,6 +125,7 @@ if TRAIN:
         if step % 50 == 0 or step == MAX_ITERATOR:
             saver.save(sess, os.path.join(MODEL_PATH, 'model'))
 if PREDICT:
+    print '\nString predict...'
     inputs = [START]
     inputs = list(map(lambda w: word2onehot(w, words2index, depth), inputs))
     predict = tf.nn.softmax(logits)
@@ -140,5 +140,4 @@ if PREDICT:
         outputs, last_state_value = sess.run(
             [predict, last_state], feed_dict={x: outputs, initial_state: last_state_value})
         word = index2words[np.argmax(outputs)]
-    print '\n[Output]'
     print result
