@@ -4,8 +4,8 @@ import numpy as np
 import sys
 import os
 
-# data = u'去年今日此门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风。'
-data = u'人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。骊山语罢清宵半，泪雨零铃终不怨。何如薄幸锦衣郎，比翼连枝当日愿。'
+data = u'去年今日此门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风。'
+# data = u'人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。骊山语罢清宵半，泪雨零铃终不怨。何如薄幸锦衣郎，比翼连枝当日愿。'
 # 开始/结束标识位
 START, END = 'S', 'E'
 # 模型参数保存路径
@@ -13,17 +13,17 @@ MODEL_PATH = 'model_path/'
 # 最大迭代次数
 MAX_ITERATOR = 1000
 # 是否输出数据信息
-OUTPUT_DATA_INFO = False
+OUTPUT_DATA_INFO = True
 # 每步预测都输出
 OUTPUT_EVERY_STEP = False
 # 训练
-TRAIN = False
+TRAIN = True
 # 预测
 PREDICT = True
 
 
 def weight(shape):
-    return tf.Variable(tf.truncated_normal(shape, stddev=0.1));
+    return tf.Variable(tf.truncated_normal(shape, stddev=0.1))
 
 
 def bias(shape):
